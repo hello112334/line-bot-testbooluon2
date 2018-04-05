@@ -9,8 +9,12 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
+    MessageEvent, TextMessage, ButtonsTemplate,
+    TextSendMessage, ImageSendMessage, TemplateSendMessage,
+    PostbackTemplateAction, MessageTemplateAction,
+    URITemplateAction
 )
+
 
 app = Flask(__name__)
 
@@ -52,9 +56,33 @@ def handle_message(event):
         TextSendMessage(text='Hi, mate'))  
         
     elif text == 'book':
+        buttons_template_message = TemplateSendMessage(
+                alt_text = 'Buttons template', 
+                template = ButtonsTemplate(
+                        thumbnail_image_url = 'https://example.com/image.jpg',
+                        title = 'Menu',
+                        text = 'Please select',
+                        actions = [
+                                PostbackTemplateAction(
+                                        label = 'postback',
+                                        text = 'postback text',
+                                        data = 'action=buy&itemid=1'
+                                ),  
+                                MessageTemplateAction(
+                                        label = 'message',
+                                        text = 'message text'
+                                ),   
+                                URITemplateAction(
+                                        label = 'uri',
+                                        uri = 'http://example.com/'
+                                )            
+            
+                        ]
+                )
+        )
         line_bot_api.reply_message(event.reply_token, 
-        TextSendMessage('https://icook.tw/recipes/search?q={}&ingredients='.format(text)))   
-    
+        TextSendMessage(text = buttons_template_message)) 
+        
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text + '\n學你說話XD'))
         
