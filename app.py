@@ -18,9 +18,9 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('AzH87TcvfQKLWSRFu2ziKsU10gIyDwK5TeMlgmnzoF+M3WAW1Jdtvmjq/BlF4wqlYNicqEJ3QzmReL7EQ5/dbxlNNROsVLMNMAZ6yJquRVTTNEG2msiups++EZJmHrjj2cPYsIs2O2tpiCFykonofgdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('b0oOxY7hM4rb8AGClOYmKtPqCIFK004tf55cbZ3QZZNr+/bUZEKve1+flyNG//vRjMHK5xt6XLZcqhrs6B8v5gW6dKC5BIb26wDDfUCekK5AbObpdycypf49s+v3r3IqWVqRWvoQ267sLm2Rk4BO/AdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('d4ad2ad65af463cd625172cb419f50e0')
+handler = WebhookHandler('33741068f54f5270a576abb88087fc3a')
 
 
 # 監聽所有來自 /callback 的 Post Request
